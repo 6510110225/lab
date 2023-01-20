@@ -9,6 +9,21 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "knex": "^2.4.1"
-  }
+    "knex": "^2.4.1",
+    "knex-stringcase": "^1.4.6",
+    "koa": "^2.14.1",
+    "koa-json": "^2.0.2",
+    "koa-router": "^12.0.0",
+    "mysql2": "^3.0.1"
+  },
+  "name": "server-ts",
+  "version": "1.0.0",
+  "main": "knexfile.js",
+  "scripts": {
+    "start": "nodemon src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
