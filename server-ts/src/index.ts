@@ -1,9 +1,14 @@
 import Koa from 'koa'
-import apiRouter from './api'
+import json from 'koa-json'
 import api from './api'
+import appConfig from './config'
+import loadFixtures from './fixture'
+
 
 const app = new Koa()
 
-app.use(api.routes());
+app.use(json())
+app.use(api.routes())
 
 app.listen(8000)
+loadFixtures(appConfig.ClearDataBeforeLoad)

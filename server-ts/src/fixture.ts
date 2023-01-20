@@ -3,8 +3,9 @@ import db from "./db";
 async function loadFixtures(clearData = false) {
     if(clearData){
         console.warn('clearing data')
-        await db('userResult').del()
         await db('announcement').del()
+        await db('userResult').del()
+        
     }
 
     await db.batchInsert('announcement', [
