@@ -1,4 +1,4 @@
-import { AuthData } from 'auth';
+import { AuthData } from '../auth';
 import Koa from 'koa'
 import Router from "koa-router";
 import { pick } from 'lodash'
