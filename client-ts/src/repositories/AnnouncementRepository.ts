@@ -17,7 +17,7 @@ export class AnnouncementRepository implements IRepository<Announcement> {
         const resp = await ax.get<Announcement[]>(`${this.urlPrefix}/announcement`,{params})
         return resp.data
     }
-    
+
     async get(id: string|number): Promise<Announcement | null> {
         const resp = await ax.get<Announcement>(`${this.urlPrefix}/announcement/${id}`)
         return resp.data
@@ -43,7 +43,7 @@ export class AnnouncementRepository implements IRepository<Announcement> {
     }
 
     async upsertUserResult(id: string|number, entity: Partial<UserResult>[]): Promise<UserResult[] | null> {
-        const resp = await ax.post<UserResult[]>(`${this.urlPrefix}/announcement/${id}/result`, entity)
+        const resp = await ax.post<UserResult[]>(`${this.urlPrefix}/announcement/${id}/results`, entity)
         return resp.data
     }
 }
