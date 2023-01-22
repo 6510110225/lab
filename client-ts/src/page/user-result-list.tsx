@@ -28,7 +28,6 @@ function UserResultList() {
                 setUserResultList([])
             }
             setUserResultList(result)
-            console.log('In filter',userResultList)
         } 
     }
 
