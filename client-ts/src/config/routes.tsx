@@ -49,6 +49,8 @@ const AppRoutes = () => {
             <Route path="login" element={<Login />}/>
             <Route path="home" element={<ProtectedRoute><UserResultList/></ProtectedRoute>} />
             <Route path='announcement' element={<ProtectedRoute staffOnly={true}><AnnouncementList/></ProtectedRoute>}/>
+            <Route path="home" element={<ProtectedRoute><UserResultList/></ProtectedRoute>} />
+            <Route path="login" element={<Login />}/>
         </Routes>
     )
 }
