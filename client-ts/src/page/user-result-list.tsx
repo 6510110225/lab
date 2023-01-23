@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import { Grid, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
+import { colors, Grid, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import UserResultCard from '../component/user-result-card';
 import UserResult from '../model/UserResult';
@@ -52,7 +52,8 @@ function UserResultList() {
             onChange={handleChangeSelectFilter}
             displayEmpty 
             >
-                <MenuItem value=''>
+                <MenuItem 
+                value=''>
                     All
                 </MenuItem>
                 <MenuItem value={1}>Pinned</MenuItem>

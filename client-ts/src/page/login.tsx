@@ -5,6 +5,8 @@ import { useAuth } from "react-oidc-context";
 import { useAppCtx } from "../AppProvider";
 import { Navigate ,useLocation } from 'react-router-dom'
 import { useEffect } from "react";
+import './login.css';
+import './background.css';
 
 function Login() {
     const { userInfo, action } = useAppCtx()
@@ -55,13 +57,28 @@ function Login() {
         }
     }
     return (
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 500}}>
-            <Button variant='contained' sx={{fontSize: 'large'}} onClick={() => void auth.signinRedirect()}>
-                <LoginIcon sx={{ mr: 1}}/>
+        <Box sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: 800,
+            backgroundImage: `url($img)`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center'
+        }}>
+        <div className="logo-container">
+            <img src={require('../img/psu.png')} alt="Logo" className="logo-img" />
+        </div>
+        <div>
+            <Button variant='contained' sx={{fontSize: 'large'}}onClick={() => void auth.signinRedirect()}>
+                <LoginIcon sx={{ mr: 3}}/>
                 Log in
-            </Button>       
+            </Button>  
+        </div> 
         </Box>
     )
 }
 
 export default Login
+
