@@ -1,58 +1,39 @@
-import { useEffect } from "react"
-import {Route, Routes, useLocation, Navigate} from "react-router-dom"
-import { useAppCtx } from "../AppProvider"
-import AnnouncementList from "../page/announcement-list"
+import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
 
-import Login from "../page/login"
-import UserResultList from "../page/user-result-list"
+import Login from '../page/login';
+import AnnouncementList from '../page/announcement-list';
+import UserResultList from '../page/user-result-list'
+import { useAppCtx } from '../AppProvider';
 
 type Props = {
-    staffOnly?: boolean
-    children: JSX.Element
+  staffOnly?: boolean
+  children: JSX.Element
 }
 
-const ProtectedRoute = ({staffOnly, children}: Props) => {
-    const {userInfo, action} = useAppCtx()
-    const location = useLocation()
-    const redirectToLogin = () => {
-        action.signOut()
-        console.log('backTo = ', location.pathname)
-        return <Navigate to="/login" replace state={{backTo: location.pathname}}/>
+const ProtectedRoute = ({staffOnly, children }: Props) => {
+  const {userInfo, action} = useAppCtx();
+  const location = useLocation()
+  const staffDenied = staffOnly && !action.isStaff()
+  if (!userInfo.ready || staffDenied) {    
+    if(staffDenied){
+      action.signOut()
     }
-    const reFresh = () => {
-        console.log('backTo = ', location.pathname)
-        return <Navigate to="/" replace state={{backTo: location.pathname}}/>
-    }
-    useEffect(() => {
-        const json = sessionStorage.getItem('userInfo') as string
-        const data = JSON.parse(json)
-        if (!userInfo.ready || (staffOnly && !action.isStaff())) {
-            if(data.ready){
-                if(staffOnly && !data.staff){
-                    redirectToLogin()
-                }else{
-                    reFresh()
-                }
-            }else{
-                redirectToLogin()
-            }  
-        }
-    }, [userInfo.ready, staffOnly])
+    console.log('backTo = ', location.pathname)
+    return  <Navigate to="/login" replace state={{backTo: location.pathname}}/>;
+  }
 
-    return children
+  return children;
 }
 
 const AppRoutes = () => {
-    return (
-        <Routes>
-            <Route index element={<Login />} />
-            <Route path="login" element={<Login />}/>
-            <Route path="home" element={<ProtectedRoute><UserResultList/></ProtectedRoute>} />
-            <Route path='announcement' element={<ProtectedRoute staffOnly={true}><AnnouncementList/></ProtectedRoute>}/>
-            <Route path="home" element={<ProtectedRoute><UserResultList/></ProtectedRoute>} />
-            <Route path="login" element={<Login />}/>
-        </Routes>
-    )
-}
+  return (
+    <Routes>
+      <Route index element={<Login />} />
+      <Route path="login" element={<Login/>} />
+      <Route path="home" element={<ProtectedRoute><UserResultList/></ProtectedRoute>} />
+      <Route path="announcement" element={<ProtectedRoute><AnnouncementList/></ProtectedRoute>} />
+    </Routes>
+  );
+};
 
-export default AppRoutes
+export default AppRoutes;
