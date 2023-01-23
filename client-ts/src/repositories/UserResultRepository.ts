@@ -7,7 +7,7 @@ export interface UserResultFilter {
     isPinned? : boolean
 }
 
-export class UserResultRepotiory implements IRepository<UserResult> {
+export class UserResultRepository implements IRepository<UserResult> {
     urlPrefix = config.remoteRepositoryUrlPrefix
 
     async getAll(filter: UserResultFilter): Promise<UserResult[] | null> {
@@ -41,8 +41,9 @@ export class UserResultRepotiory implements IRepository<UserResult> {
         return resp.data
     }
 
-    async toggleIsPinned(id: string|number): Promise<UserResult | null> {
-        const resp = await ax.get<UserResult>(`${this.urlPrefix}/userResult/${id}/pin/1`)
+    async toggleIsPinned(id: string|number,action: number): Promise<UserResult | null> {
+        const resp = await ax.get<UserResult>(`${this.urlPrefix}/userResult/${id}/pin/${action}`)
         return resp.data
     }
 }
+
