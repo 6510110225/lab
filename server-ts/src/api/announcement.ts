@@ -28,7 +28,7 @@ router
 
         if (ctx.request.query['keyword']) {
             const keyword = String(ctx.request.query['keyword'])
-            query = query.where((it) => {it.where('topic','like', `%${keyword}`).orWhere('description','like',`%${keyword}`)})
+            query = query.where((it) => {it.where('topic','like', `%${keyword}%`).orWhere('description','like',`%${keyword}%`)})
         }
         ctx.body = await query.orderBy('id','desc')
     })
