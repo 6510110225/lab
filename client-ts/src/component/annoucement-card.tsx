@@ -160,7 +160,7 @@ function AnnouncementCard(props: Prop) {
                 <div id="trashAnnouncement">
                     <img 
                     src="https://cdn-icons-png.flaticon.com/512/578/578104.png" 
-                    height='60%' width='20%'
+                    height='60%' width='21%'
                     ></img>
                 </div>
               </DialogContent>
